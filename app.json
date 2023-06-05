@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "SportAround",
+    "slug": "SportAround",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
