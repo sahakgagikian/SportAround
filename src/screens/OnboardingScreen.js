@@ -116,7 +116,7 @@ const OnboardingScreen = ({ navigation }) => {
             <View style={{ height: 50 }}>
               <TouchableOpacity
                 style={styles.start}
-                onPress={() => navigation.replace("HomeScreen")}
+                onPress={() => navigation.replace("AccountAccessScreen")}
               >
                 <Text style={{ fontSize: 20, color: COLORS.white }}>
                   Начать

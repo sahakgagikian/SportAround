@@ -3,8 +3,16 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import OnboardingScreen from "./src/screens/OnboardingScreen";
-import HomeScreen from "./src/screens/HomeScreen";
+import AccountAccessScreen from "./src/screens/AccountAccessScreen";
+import LoginScreen from "./src/screens/LoginScreen";
+import PasswordRecoveryScreen from "./src/screens/PasswordRecoveryScreen";
+import RegistrationScreen from "./src/screens/RegistrationScreen";
+import CabinetScreen from "./src/screens/CabinetScreen";
+import EditPersonalDataScreen from "./src/screens/EditPersonalDataScreen";
+import ChooseGameScreen from "./src/screens/ChooseGameScreen";
+import CreateGameScreen from "./src/screens/CreateGameScreen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -27,19 +35,33 @@ const App = () => {
   }, []);
 
   return (
-    isAppFirstLaunched != null && (
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          {!isAppFirstLaunched && (
-            <Stack.Screen
-              name="OnboardingScreen"
-              component={OnboardingScreen}
-            />
-          )}
-          <Stack.Screen name="HomeScreen" component={HomeScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    )
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        {isAppFirstLaunched && (
+          <Stack.Screen name="OnboardingScreen" component={OnboardingScreen} />
+        )}
+        <Stack.Screen
+          name="AccountAccessScreen"
+          component={AccountAccessScreen}
+        />
+        <Stack.Screen name="LoginScreen" component={LoginScreen} />
+        <Stack.Screen
+          name="PasswordRecoveryScreen"
+          component={PasswordRecoveryScreen}
+        />
+        <Stack.Screen
+          name="RegistrationScreen"
+          component={RegistrationScreen}
+        />
+        <Stack.Screen name="CabinetScreen" component={CabinetScreen} />
+        <Stack.Screen
+          name="EditPersonalDataScreen"
+          component={EditPersonalDataScreen}
+        />
+        <Stack.Screen name="ChooseGameScreen" component={ChooseGameScreen} />
+        <Stack.Screen name="CreateGameScreen" component={CreateGameScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
