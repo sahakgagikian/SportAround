@@ -89,9 +89,9 @@ const ListContainer = () => {
         <Text style={styles.mapText}>Смотреть на карте</Text>
         <TouchableOpacity style={styles.mapButton}>
           <svg
-            width="100"
-            height="106"
-            viewBox="0 0 100 106"
+            width="54"
+            height="54"
+            viewBox="26 22 54 54"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -121,7 +121,7 @@ const ListContainer = () => {
                 <feColorMatrix
                   in="SourceAlpha"
                   type="matrix"
-                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
                   result="hardAlpha"
                 />
                 <feOffset dy="4" />
@@ -157,6 +157,38 @@ const ListContainer = () => {
           </svg>
         </TouchableOpacity>
       </View>
+      <View style={styles.fieldList}>
+        <View style={styles.fieldItem}>
+          <Text style={styles.fieldTitle}>Название</Text>
+          <Text style={styles.fieldAddress}>Москва, Привольная улица, 64</Text>
+          <Text style={styles.fieldCity}>Москва, Россия</Text>
+          <Text style={styles.fieldDistance}>200 м</Text>
+        </View>
+        <View style={styles.fieldItem}>
+          <Text style={styles.fieldTitle}>Название</Text>
+          <Text style={styles.fieldAddress}>Москва, Привольная улица, 64</Text>
+          <Text style={styles.fieldCity}>Москва, Россия</Text>
+          <Text style={styles.fieldDistance}>200 м</Text>
+        </View>
+        <View style={styles.fieldItem}>
+          <Text style={styles.fieldTitle}>Название</Text>
+          <Text style={styles.fieldAddress}>Москва, Привольная улица, 64</Text>
+          <Text style={styles.fieldCity}>Москва, Россия</Text>
+          <Text style={styles.fieldDistance}>200 м</Text>
+        </View>
+        <View style={styles.fieldItem}>
+          <Text style={styles.fieldTitle}>Название</Text>
+          <Text style={styles.fieldAddress}>Москва, Привольная улица, 64</Text>
+          <Text style={styles.fieldCity}>Москва, Россия</Text>
+          <Text style={styles.fieldDistance}>200 м</Text>
+        </View>
+        <View style={styles.fieldItem}>
+          <Text style={styles.fieldTitle}>Название</Text>
+          <Text style={styles.fieldAddress}>Москва, Привольная улица, 64</Text>
+          <Text style={styles.fieldCity}>Москва, Россия</Text>
+          <Text style={styles.fieldDistance}>200 м</Text>
+        </View>
+      </View>
     </View>
   );
 };
@@ -177,6 +209,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingBottom: 20,
     backgroundColor: COLORS.primary,
+    overflow: "hidden",
   },
   header: {
     flexDirection: "row",
@@ -216,6 +249,60 @@ const styles = StyleSheet.create({
     fontSize: 16,
     placeholderTextColor: "#BDBDBD",
     marginLeft: 10,
+  },
+  listContainer: {
+    flex: 1,
+    marginTop: 20,
+    width: "100%",
+  },
+  mapRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    width: "100%",
+    height: 54,
+    backgroundColor: "#f1f1f1",
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    paddingHorizontal: 15,
+  },
+  mapText: {
+    fontSize: 16,
+    color: "#6D61E7",
+    fontWeight: 600,
+  },
+  mapButton: {
+    position: "absolute",
+    right: 0,
+    top: 0,
+  },
+  fieldList: {
+    backgroundColor: COLORS.white,
+    padding: 15,
+    height: "100%",
+  },
+  fieldItem: {
+    borderBottomColor: "#E5E5E5",
+    borderBottomWidth: 1,
+  },
+  fieldTitle: {
+    fontSize: 16,
+    fontWeight: 600,
+    marginVertical: 5,
+  },
+  fieldAddress: {
+    fontSize: 12,
+    marginVertical: 5,
+  },
+  fieldCity: {
+    fontSize: 12,
+    marginVertical: 5,
+  },
+  fieldDistance: {
+    position: "absolute",
+    bottom: 5,
+    right: 0,
+    color: "#6565FC",
+    fontSize: 14,
   },
 });
 

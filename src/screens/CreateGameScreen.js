@@ -106,7 +106,7 @@ const FieldTypeContainer = ({ navigation }) => {
           navigation.replace("FieldListScreen");
         }}
       >
-        <Text>Бесплатные</Text>
+        <Text style={styles.freeText}>Бесплатные</Text>
       </TouchableOpacity>
     </View>
   );
@@ -199,10 +199,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "#29DEC8",
-    color: "#29DEC8",
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  freeText: {
+    color: "#29DEC8",
+    fontSize: 14,
   },
   submitButtonContainer: {
     position: "absolute",
