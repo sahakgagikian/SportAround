@@ -6,6 +6,12 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
+// import MapboxGL from "@rnmapbox/maps";
+
+/* MapboxGL.setConnected(true);
+MapboxGL.setAccessToken(
+  +"pk.eyJ1IjoidnQ1MDAiLCJhIjoiY2xqcHd6bHRiMDE4MDNtcGV6NGIweXN3cyJ9.11RssaIsXSKGAUwrFaW-Ag"
+); */
 
 const COLORS = {
   primary: "#0E0938",
@@ -18,7 +24,7 @@ const HeaderContainer = ({ navigation }) => {
     <View style={styles.header}>
       <TouchableOpacity
         style={styles.back}
-        onPress={() => navigation.replace("CreateGameScreen")}
+        onPress={() => navigation.replace("FieldListScreen")}
       >
         <svg
           width="11"
@@ -35,7 +41,7 @@ const HeaderContainer = ({ navigation }) => {
           />
         </svg>
       </TouchableOpacity>
-      <Text style={styles.title}>Список площадок</Text>
+      <Text style={styles.title}>Выбор площадки</Text>
       <TouchableOpacity style={styles.action}>
         <svg
           width="40"
@@ -82,17 +88,12 @@ const SearchbarContainer = () => {
   );
 };
 
-const ListContainer = ({ navigation }) => {
+const ListContainer = () => {
   return (
     <View style={styles.listContainer}>
       <View style={styles.mapRow}>
         <Text style={styles.mapText}>Смотреть на карте</Text>
-        <TouchableOpacity
-          style={styles.mapButton}
-          onPress={() => {
-            navigation.replace("FieldsMapScreen");
-          }}
-        >
+        <TouchableOpacity style={styles.mapButton}>
           <svg
             width="54"
             height="54"
@@ -163,72 +164,47 @@ const ListContainer = ({ navigation }) => {
         </TouchableOpacity>
       </View>
       <View style={styles.fieldList}>
-        <TouchableOpacity
-          style={styles.fieldItem}
-          onPress={() => {
-            navigation.replace("FieldInfoScreen");
-          }}
-        >
+        <View style={styles.fieldItem}>
           <Text style={styles.fieldTitle}>Название</Text>
           <Text style={styles.fieldAddress}>Москва, Привольная улица, 64</Text>
           <Text style={styles.fieldCity}>Москва, Россия</Text>
           <Text style={styles.fieldDistance}>200 м</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.fieldItem}
-          onPress={() => {
-            navigation.replace("FieldInfoScreen");
-          }}
-        >
+        </View>
+        <View style={styles.fieldItem}>
           <Text style={styles.fieldTitle}>Название</Text>
           <Text style={styles.fieldAddress}>Москва, Привольная улица, 64</Text>
           <Text style={styles.fieldCity}>Москва, Россия</Text>
           <Text style={styles.fieldDistance}>200 м</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.fieldItem}
-          onPress={() => {
-            navigation.replace("FieldInfoScreen");
-          }}
-        >
+        </View>
+        <View style={styles.fieldItem}>
           <Text style={styles.fieldTitle}>Название</Text>
           <Text style={styles.fieldAddress}>Москва, Привольная улица, 64</Text>
           <Text style={styles.fieldCity}>Москва, Россия</Text>
           <Text style={styles.fieldDistance}>200 м</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.fieldItem}
-          onPress={() => {
-            navigation.replace("FieldInfoScreen");
-          }}
-        >
+        </View>
+        <View style={styles.fieldItem}>
           <Text style={styles.fieldTitle}>Название</Text>
           <Text style={styles.fieldAddress}>Москва, Привольная улица, 64</Text>
           <Text style={styles.fieldCity}>Москва, Россия</Text>
           <Text style={styles.fieldDistance}>200 м</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.fieldItem}
-          onPress={() => {
-            navigation.replace("FieldInfoScreen");
-          }}
-        >
+        </View>
+        <View style={styles.fieldItem}>
           <Text style={styles.fieldTitle}>Название</Text>
           <Text style={styles.fieldAddress}>Москва, Привольная улица, 64</Text>
           <Text style={styles.fieldCity}>Москва, Россия</Text>
           <Text style={styles.fieldDistance}>200 м</Text>
-        </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
 };
 
-const FieldListScreen = ({ navigation }) => {
+const FieldsMapScreen = ({ navigation }) => {
   return (
     <View style={styles.page}>
       <HeaderContainer navigation={navigation} />
       <SearchbarContainer />
-      <ListContainer navigation={navigation} />
+      <ListContainer />
     </View>
   );
 };
@@ -336,4 +312,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FieldListScreen;
+export default FieldsMapScreen;

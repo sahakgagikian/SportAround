@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import {
+  AsyncStorage,
   View,
   Text,
   TextInput,
@@ -40,7 +41,7 @@ const HeaderContainer = ({ navigation }) => {
   );
 };
 
-const FormContainer = () => {
+const FormContainer = ({ data, handleCollectData }) => {
   return (
     <View style={styles.form}>
       {/* Other input fields */}
@@ -52,18 +53,33 @@ const FormContainer = () => {
         }}
       >
         <View style={styles.fieldBlock}>
-          <Text style={styles.label}>Имя</Text>
-          <TextInput style={styles.input} value="Mojoj" />
+          <Text style={styles.label} value={data.name}>
+            Имя
+          </Text>
+          <TextInput
+            style={styles.input}
+            onKeyUp={(e) => handleCollectData(e, "name")}
+          />
         </View>
 
         <View style={styles.fieldBlock}>
-          <Text style={styles.label}>E-mail</Text>
-          <TextInput style={styles.input} />
+          <Text style={styles.label} value={data.email}>
+            E-mail
+          </Text>
+          <TextInput
+            style={styles.input}
+            onKeyUp={(e) => handleCollectData(e, "email")}
+          />
         </View>
 
         <View style={styles.fieldBlock}>
-          <Text style={styles.label}>Телефон</Text>
-          <TextInput style={styles.input} />
+          <Text style={styles.label} value={data.phoneNumber}>
+            Телефон
+          </Text>
+          <TextInput
+            style={styles.input}
+            onKeyUp={(e) => handleCollectData(e, "phoneNumber")}
+          />
         </View>
 
         <View style={styles.fieldBlock}>
@@ -72,15 +88,20 @@ const FormContainer = () => {
         </View>
 
         <View style={styles.fieldBlock}>
-          <Text style={styles.label}>Адрес</Text>
-          <TextInput style={styles.input} />
+          <Text style={styles.label} value={data.address}>
+            Адрес
+          </Text>
+          <TextInput
+            style={styles.input}
+            onKeyUp={(e) => handleCollectData(e, "address")}
+          />
         </View>
       </View>
     </View>
   );
 };
 
-const ButtonContainer = () => {
+const ButtonContainer = ({ submit, navigation }) => {
   return (
     <View>
       <TouchableOpacity
@@ -97,11 +118,71 @@ const ButtonContainer = () => {
 };
 
 const EditPersonalDataScreen = ({ navigation }) => {
+  const [formData, setFormData] = useState(new FormData());
+  const [data, setData] = useState({});
+
+  const _storeData = async (response) => {
+    try {
+      await AsyncStorage.setItem("@MySuperStore:data", response);
+      console.log("response", response);
+    } catch (error) {
+      console.log(error);
+      // Error saving data
+    }
+  };
+
+  const submit = () => {
+    // let formData = new FormData();
+    formData.append("id", 15);
+    formData.append("name", data.name);
+    formData.append("email", data.email);
+    formData.append("phone", data.phoneNumber);
+    fetchFunction(
+      "https://sport.pog-arm.org/G_Users/update_user",
+      formData,
+      "post"
+    );
+  };
+
+  const handleCollectData = (e, key) => {
+    const info = data;
+    info[key] = e.target.value;
+    setData(info);
+  };
+
+  const fetchFunction = (source, data, method) => {
+    return fetch(source, {
+      body: data,
+      method: method,
+    })
+      .then((res) => res.json)
+      .catch((error) => {
+        console.error("Error:", error);
+      })
+      .then((response) => {
+        _storeData(response);
+        // console.log("first way");
+        // console.log(response);
+      });
+  };
+
+  const _retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem("TASKS");
+      if (value !== null) {
+        // We have data!!
+        console.log(value);
+      }
+    } catch (error) {
+      // Error retrieving data
+    }
+  };
+
   return (
     <View style={styles.page}>
       <HeaderContainer navigation={navigation} />
-      <FormContainer />
-      <ButtonContainer />
+      <FormContainer data={data} handleCollectData={handleCollectData} />
+      <ButtonContainer submit={submit} navigation={navigation} />
     </View>
   );
 };

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+// import DocumentPicker from "react-native-document-picker";
+import DatePicker from "react-native-datepicker";
 
 const COLORS = {
   primary: "#0E0938",
@@ -15,6 +17,7 @@ const RegistrationScreen = ({ navigation }) => {
   const [birthDate, setBirthDate] = useState("");
   const [isDatePickerVisible, setDatePickerVisible] = useState(false);
   const [imageUri, setImageUri] = useState(null);
+  const [date, setDate] = useState("09-10-2021");
 
   const handleCollectData = (e, key) => {
     const info = data;
@@ -74,9 +77,27 @@ const RegistrationScreen = ({ navigation }) => {
     hideDatePicker();
   };
 
-  const handleImageUpload = () => {
-    // Implement the image picker logic here to select an image and set the imageUri state variable
-  };
+  /* const docPicker = async () => {
+    // Pick a single file
+    try {
+      const res = await DocumentPicker.pick({
+        type: [DocumentPicker.types.images],
+      });
+      console.log(
+        res.uri,
+        res.type, // mime type
+        res.name,
+        res.size
+      );
+      this.uploadAPICall(res); //here you can call your API and send the data to that API
+    } catch (err) {
+      if (DocumentPicker.isCancel(err)) {
+        console.log("error -----", err);
+      } else {
+        throw err;
+      }
+    }
+  }; */
 
   const renderFirstPage = () => {
     return (
@@ -96,7 +117,7 @@ const RegistrationScreen = ({ navigation }) => {
           {/* Image Upload Container */}
           <TouchableOpacity
             style={styles.imageContainer}
-            onPress={handleImageUpload}
+            // onPress={() => this.docPicker()}
           >
             {imageUri ? (
               <Image source={{ uri: imageUri }} style={styles.image} />
@@ -166,7 +187,45 @@ const RegistrationScreen = ({ navigation }) => {
   const renderSecondPage = () => {
     const renderDatePickerPlaceholder = () => {
       if (!birthDate) {
-        return <Text style={{ color: COLORS.white }}>Дата рождения</Text>;
+        return;
+        <View>
+          <Text style={{ color: COLORS.white }}>Дата рождения</Text>
+          <DatePicker
+            style={styles.datePickerStyle}
+            date={date}
+            mode="date"
+            placeholder="select date"
+            format="DD/MM/YYYY"
+            minDate="01-01-1900"
+            maxDate="01-01-2000"
+            confirmBtnText="Confirm"
+            cancelBtnText="Cancel"
+            customStyles={{
+              dateIcon: {
+                position: "absolute",
+                right: -5,
+                top: 4,
+                marginLeft: 0,
+              },
+              dateInput: {
+                borderColor: "gray",
+                alignItems: "flex-start",
+                borderWidth: 0,
+                borderBottomWidth: 1,
+              },
+              placeholderText: {
+                fontSize: 17,
+                color: "gray",
+              },
+              dateText: {
+                fontSize: 17,
+              },
+            }}
+            onDateChange={(date) => {
+              setDate(date);
+            }}
+          />
+        </View>;
       }
       return null;
     };
@@ -283,6 +342,29 @@ const RegistrationScreen = ({ navigation }) => {
       backgroundColor: "#6843CF",
       justifyContent: "center",
       alignItems: "center",
+    },
+
+    /* ---------------------------- */
+    container: {
+      flex: 1,
+      padding: 10,
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "#A8E9CA",
+    },
+    title: {
+      textAlign: "left",
+      fontSize: 20,
+      fontWeight: "bold",
+    },
+    datePickerStyle: {
+      width: 230,
+    },
+    text: {
+      textAlign: "left",
+      width: 230,
+      fontSize: 16,
+      color: "#000",
     },
   };
 

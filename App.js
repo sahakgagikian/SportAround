@@ -12,6 +12,9 @@ import EditPersonalDataScreen from "./src/screens/EditPersonalDataScreen";
 import ChooseGameScreen from "./src/screens/ChooseGameScreen";
 import CreateGameScreen from "./src/screens/CreateGameScreen";
 import FieldListScreen from "./src/screens/FieldListScreen";
+import FieldsMapScreen from "./src/screens/FieldsMapScreen";
+import FieldInfoScreen from "./src/screens/FieldInfoScreen";
+import TeamListScreen from "./src/screens/TeamListScreen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createStackNavigator();
@@ -62,6 +65,9 @@ const App = () => {
         <Stack.Screen name="ChooseGameScreen" component={ChooseGameScreen} />
         <Stack.Screen name="CreateGameScreen" component={CreateGameScreen} />
         <Stack.Screen name="FieldListScreen" component={FieldListScreen} />
+        <Stack.Screen name="FieldsMapScreen" component={FieldsMapScreen} />
+        <Stack.Screen name="FieldInfoScreen" component={FieldInfoScreen} />
+        <Stack.Screen name="TeamListScreen" component={TeamListScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
